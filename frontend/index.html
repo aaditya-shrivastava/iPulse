@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IPulse — IP Intelligence Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <span class="logo-icon">&#9670;</span>
+      <span>IPulse</span>
+    </div>
+    <button id="theme-toggle" aria-label="Toggle dark mode">&#9790;</button>
+  </header>
+
+  <!-- Hero search -->
+  <section class="hero">
+    <h1>IP Intelligence Dashboard</h1>
+    <p class="subtitle">Search any IP address to reveal its full profile</p>
+    <div class="search-bar">
+      <input type="text" id="ip-input" placeholder="Enter IP address e.g. 8.8.8.8" />
+      <button id="search-btn">Search</button>
+    </div>
+    <p id="error-msg" class="error hidden"></p>
+  </section>
+
+  <!-- Map -->
+  <div id="map-container" class="hidden">
+    <div id="map"></div>
+  </div>
+
+  <!-- Result cards -->
+  <section id="results" class="hidden">
+
+    <!-- Top summary -->
+    <div class="summary-row">
+      <div class="summary-card" id="card-ip">
+        <span class="label">IP Address</span>
+        <span class="value" id="res-ip">—</span>
+      </div>
+      <div class="summary-card" id="card-location">
+        <span class="label">Location</span>
+        <span class="value" id="res-location">—</span>
+      </div>
+      <div class="summary-card" id="card-timezone">
+        <span class="label">Timezone</span>
+        <span class="value" id="res-timezone">—</span>
+      </div>
+      <div class="summary-card threat-card" id="card-threat">
+        <span class="label">Threat Level</span>
+        <span class="value" id="res-threat">—</span>
+      </div>
+    </div>
+
+    <!-- Detail grid -->
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h3>&#127758; Network Info</h3>
+        <div class="detail-row"><span>ISP</span><span id="res-isp">—</span></div>
+        <div class="detail-row"><span>Organization</span><span id="res-org">—</span></div>
+        <div class="detail-row"><span>Connection</span><span id="res-conn">—</span></div>
+        <div class="detail-row"><span>VPN / Proxy</span><span id="res-vpn">—</span></div>
+        <div class="detail-row"><span>Hosting / Bot</span><span id="res-host">—</span></div>
+      </div>
+
+      <div class="detail-card">
+        <h3>&#128205; Location Details</h3>
+        <div class="detail-row"><span>City</span><span id="res-city">—</span></div>
+        <div class="detail-row"><span>Region</span><span id="res-region">—</span></div>
+        <div class="detail-row"><span>Country</span><span id="res-country">—</span></div>
+        <div class="detail-row"><span>ZIP Code</span><span id="res-zip">—</span></div>
+        <div class="detail-row"><span>Coordinates</span><span id="res-coords">—</span></div>
+      </div>
+
+      <div class="detail-card">
+        <h3>&#127774; Weather at Location</h3>
+        <div class="detail-row"><span>Temperature</span><span id="res-temp">—</span></div>
+        <div class="detail-row"><span>Wind Speed</span><span id="res-wind">—</span></div>
+        <div class="detail-row"><span>Condition</span><span id="res-condition">—</span></div>
+        <div class="detail-row"><span>Local Time</span><span id="res-localtime">—</span></div>
+      </div>
+    </div>
+
+    <!-- Action buttons -->
+    <div class="actions">
+      <button id="copy-btn">&#128203; Copy IP</button>
+      <button id="export-btn">&#8681; Export JSON</button>
+      <button id="clear-history-btn">&#128465; Clear History</button>
+    </div>
+  </section>
+
+  <!-- Search history -->
+  <section id="history-section" class="hidden">
+    <h2>Recent Searches</h2>
+    <div id="history-list"></div>
+  </section>
+
+  <!-- Skeleton loader -->
+  <div id="skeleton" class="hidden">
+    <div class="skeleton-map"></div>
+    <div class="skeleton-cards">
+      <div class="sk-card"></div>
+      <div class="sk-card"></div>
+      <div class="sk-card"></div>
+      <div class="sk-card"></div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
